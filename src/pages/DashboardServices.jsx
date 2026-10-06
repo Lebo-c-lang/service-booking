@@ -42,9 +42,11 @@ export default function DashboardServices({ business }) {
     setError("");
 
     let uploadedPath;
+    let saveStep = "Saving the service";
     try {
       let imageUrl = null;
       if (imageFile) {
+        saveStep = "Uploading the service photo";
         const extension = { "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp" }[imageFile.type];
         uploadedPath = `${business.id}/${crypto.randomUUID()}.${extension}`;
         const { error: uploadError } = await supabase.storage
@@ -54,6 +56,7 @@ export default function DashboardServices({ business }) {
         imageUrl = supabase.storage.from("service-images").getPublicUrl(uploadedPath).data.publicUrl;
       }
 
+      saveStep = "Saving the service";
       const { error: insertError } = await supabase.from("services").insert({
         business_id: business.id,
         name,
@@ -69,8 +72,14 @@ export default function DashboardServices({ business }) {
       setImageFile(null);
       await loadServices();
     } catch (saveError) {
-      if (uploadedPath) await supabase.storage.from("service-images").remove([uploadedPath]);
-      setError(saveError.message || "Couldn't add this service. Please try again.");
+      if (uploadedPath) {
+        try {
+          await supabase.storage.from("service-images").remove([uploadedPath]);
+        } catch {
+          // Keep the original save error visible if cleanup is unavailable.
+        }
+      }
+      setError(`${saveStep} failed: ${saveError.message || "Please try again."}`);
     } finally {
       setSaving(false);
     }

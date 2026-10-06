@@ -26,7 +26,7 @@ create policy "business owners upload their service images"
     bucket_id = 'service-images'
     and exists (
       select 1 from public.businesses
-      where businesses.id::text = (storage.foldername(name))[1]
+        where businesses.id::text = (storage.foldername(storage.objects.name))[1]
         and businesses.owner_id = auth.uid()
     )
   );
@@ -38,7 +38,7 @@ create policy "business owners delete their service images"
     bucket_id = 'service-images'
     and exists (
       select 1 from public.businesses
-      where businesses.id::text = (storage.foldername(name))[1]
+        where businesses.id::text = (storage.foldername(storage.objects.name))[1]
         and businesses.owner_id = auth.uid()
     )
   );
