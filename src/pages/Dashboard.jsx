@@ -113,32 +113,32 @@ export default function Dashboard({ session }) {
 
   return (
     <div className="min-h-screen">
-      <header className="border-b border-line bg-white">
-        <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
+      <header className="border-b border-line/80 bg-white/90 backdrop-blur-sm">
+        <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <div>
-            <div className="font-semibold text-ink">{business.name}</div>
+            <div className="font-semibold tracking-tight text-ink">{business.name}</div>
             <a
               href={`/b/${business.slug}`}
               target="_blank"
               rel="noreferrer"
-              className="text-xs text-teal-600"
+              className="mt-0.5 inline-block text-xs font-medium text-teal-600 hover:text-teal-700"
             >
-              /b/{business.slug} ↗
+              View booking page <span aria-hidden="true">↗</span>
             </a>
           </div>
-          <button onClick={handleSignOut} className="text-sm text-ink/50">
+          <button onClick={handleSignOut} className="rounded-md px-3 py-2 text-sm text-ink/60 transition hover:bg-paper hover:text-ink">
             Sign out
           </button>
         </div>
-        <nav className="max-w-3xl mx-auto px-4 flex gap-6 border-t border-line">
+        <nav className="max-w-4xl mx-auto px-4 flex gap-2 border-t border-line/70" aria-label="Dashboard sections">
           {TABS.map((t) => (
             <button
               key={t.key}
               onClick={() => setTab(t.key)}
-              className={`py-3 text-sm border-b-2 transition ${
+              className={`my-2 rounded-md px-4 py-2 text-sm transition ${
                 tab === t.key
-                  ? "border-teal-600 text-ink font-medium"
-                  : "border-transparent text-ink/50"
+                  ? "bg-teal-50 text-teal-700 font-semibold"
+                  : "text-ink/55 hover:bg-paper hover:text-ink"
               }`}
             >
               {t.label}
@@ -147,7 +147,7 @@ export default function Dashboard({ session }) {
         </nav>
       </header>
 
-      <main className="max-w-3xl mx-auto px-4 py-8">
+      <main className="max-w-4xl mx-auto px-4 py-8 md:py-10">
         {tab === "calendar" && <DashboardCalendar business={business} />}
         {tab === "services" && <DashboardServices business={business} />}
         {tab === "settings" && (

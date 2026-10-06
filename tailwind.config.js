@@ -4,15 +4,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: "#171717",
-        paper: "#FAFAF9",
-        line: "#E4E4E1",
+        ink: "#202B26",
+        paper: "#F5F4EE",
+        line: "#E1E4DC",
         teal: {
-          50: "#EEF5F4",
-          100: "#D5E6E4",
-          400: "#2C7A77",
-          600: "#0B4F4F",
-          700: "#073A3A",
+          50: "#EDF4EF",
+          100: "#D9E8DC",
+          400: "#3E8068",
+          600: "#174C3D",
+          700: "#10372E",
         },
         amber: {
           50: "#FDF3E7",
@@ -21,7 +21,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        sans: ["DM Sans", "system-ui", "sans-serif"],
+        display: ["Fraunces", "Georgia", "serif"],
       },
     },
   },

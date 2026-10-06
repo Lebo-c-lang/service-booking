@@ -9,7 +9,7 @@ Stack: React + Vite + Tailwind, Supabase (Postgres + Auth + Edge Functions), Pay
 
 - Public booking page per business (`/b/:slug`) — pick a service, pick a slot, pay a deposit
 - Booking confirmation page
-- Owner dashboard (auth-gated): calendar of bookings, services CRUD, settings (hours + deposit rules)
+- Owner dashboard (auth-gated): calendar of bookings, services CRUD with optional service photos, settings (hours + deposit rules)
 - Slot availability logic that checks working hours against existing bookings
 - Paystack checkout + a Supabase Edge Function webhook that verifies payment and confirms the booking
 - SQL migration for the full schema (businesses, services, bookings, availability_blocks)
@@ -65,7 +65,7 @@ npm run dev
 1. Sign up at `/login` (this creates a Supabase Auth user).
 2. You'll land on `/dashboard` — go to Settings and fill in your business name, slug, working
    hours, and deposit amount.
-3. Go to Services and add at least one service.
+3. Go to Services and add at least one service. Add an optional JPG, PNG, or WebP photo (up to 5 MB) to make it visible on your public booking page.
 4. Your public booking page is now live at `/b/your-slug`.
 
 ## 7. Deploy

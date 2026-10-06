@@ -178,12 +178,17 @@ export default function PublicBooking() {
   const deposit = depositFor(business, selectedService);
 
   return (
-    <div className="max-w-lg mx-auto px-4 py-10">
-      <h1 className="text-2xl font-semibold text-ink">{business.name}</h1>
-      <p className="text-ink/60 text-sm mt-1 mb-8">Book an appointment</p>
+    <div className="mx-auto max-w-2xl px-4 pb-12 pt-6 sm:pt-10">
+      <header className="relative mb-8 overflow-hidden rounded-xl bg-teal-700 px-6 py-7 text-white sm:px-8 sm:py-9">
+        <div className="absolute -right-10 -top-14 h-48 w-48 rounded-full border border-white/10" aria-hidden="true" />
+        <div className="absolute -right-2 -top-6 h-32 w-32 rounded-full border border-white/10" aria-hidden="true" />
+        <p className="relative mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-white/65">Appointments</p>
+        <h1 className="font-display relative text-3xl leading-tight sm:text-4xl">{business.name}</h1>
+        <p className="relative mt-2 text-sm text-white/75">Choose a service and find a time that works.</p>
+      </header>
 
       <section className="mb-8">
-        <h2 className="text-sm font-medium text-ink/70 mb-3">1. Choose a service</h2>
+        <h2 className="mb-3 text-sm font-semibold text-ink">01 <span className="ml-2 font-normal text-ink/55">Choose a service</span></h2>
         <ServicePicker
           services={services}
           selectedId={selectedService?.id}
@@ -193,7 +198,7 @@ export default function PublicBooking() {
 
       {selectedService && (
         <section className="mb-8">
-          <h2 className="text-sm font-medium text-ink/70 mb-3">2. Choose a time</h2>
+          <h2 className="mb-3 text-sm font-semibold text-ink">02 <span className="ml-2 font-normal text-ink/55">Choose a time</span></h2>
           <SlotPicker
             selectedDate={selectedDate}
             onDateChange={setSelectedDate}
@@ -207,7 +212,7 @@ export default function PublicBooking() {
 
       {selectedService && selectedSlot && (
         <section className="mb-8">
-          <h2 className="text-sm font-medium text-ink/70 mb-3">3. Your details</h2>
+          <h2 className="mb-3 text-sm font-semibold text-ink">03 <span className="ml-2 font-normal text-ink/55">Your details</span></h2>
           <form onSubmit={handleSubmit} className="space-y-3">
             <input
               type="text"
